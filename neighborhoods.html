@@ -1,0 +1,77 @@
+<!--
+Name: Josh Williams
+Description: UK Police API How To Guide
+https://data.police.uk/docs/
+-->
+
+<!doctype html>
+<html>
+<head>
+
+<title></title>
+<meta charset="UTF-8">
+<link href="ukCrime.css" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div class="topnav">
+	<table><tbody><tr>
+		<td><a href="home.html">Home</a></td>
+		<td><a href="gettingStarted.html">Getting Started</a></td>
+		<td><a href="forces.html">Forces</a></td>
+		<td><a href="crimes.html">Crimes</a></td>
+		<td><a href="neighborhoods.html">Neighborhoods</a></td>
+		<td><a href="stopAndSearch.html">Stops and Searches</a></td>
+	</tr></tbody></table>
+</div>
+
+<div class="top">
+	<h1>UK Police API Guide</h1>
+</div>
+
+<div class="content">
+	<h2 class="bodyHeader">Accessing Neighborhood Information</h2>
+	
+	<p>By using a police force id (in this case, "leicestershire") in the following link 
+		<a href="https://data.police.uk/api/leicestershire/neighbourhoods">https://data.police.uk/api/leicestershire/neighbourhoods</a>,
+		you can view the neighborhoods for that police force.  This time, instead of displaying
+		the raw JSON data, we will parse it and display each of the neighborhoods in a table.
+		Enter "leicestershire" as the force id in the form below:</p>
+	
+	<p data-height="265" data-theme-id="dark" data-slug-hash="gryBjQ" data-default-tab="js" data-user="willijo4" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/willijo4/pen/gryBjQ/">gryBjQ</a> by Josh (<a href="http://codepen.io/willijo4">@willijo4</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
+
+	<p>We first grab the response text (<span class="codespan">var response = req.responseText;</span>),
+		then we parse this JSON data (<span class="codespan">JSON.parse(response)</span>)
+		so that the data could be used as an array of objects.  Then this was passed to a function 
+		<span class="codespan">displayNeighborhoods</span>, which contains the appropriate code 
+		for a table, and for each object in the array, it will put the id and name of each 
+		neighborhood into a row in this table.</p>
+	
+	<p>You can also enter the ID for both a force and a specific neighborhood to view information for
+		that specific neighborhood.  Use "leicestershire" for the force and "NE15" to retrieve
+		the information for that neighborhood.  We will return the id, name, description, 
+		and population of that particular neighborhood by putting each key and value into a row:</p>
+	
+	<p data-height="265" data-theme-id="dark" data-slug-hash="wGZYYb" data-default-tab="js" data-user="willijo4" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/willijo4/pen/wGZYYb/">Neighborhood2</a> by Josh (<a href="http://codepen.io/willijo4">@willijo4</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
+	<p>Go to the url <a href="http://data.police.uk/api/leicestershire/NE15">https://data.police.uk/api/leicestershire/NE15</a>
+		to view all of the data for this neighborhood, and edit the CodePen to display other 
+		information for this neighborhood.  You can view the <a href="https://data.police.uk/docs/">documentation</a>
+		and explore other options for requesting neighborhood information from the API.
+		We will move on to Stop and Search data, where we will combine what we have learned with creating GET requests and query string with 
+		what we have learned about manipulating and displaying JSON data.</p>
+	
+	<div class="nav">
+		<a href="crimes.html"><div class="navbuttons" id="button1">Previous</div></a>
+		<a href="stopAndSearch.html"><div class="navbuttons" id="button2">Next</div></a>
+	</div>
+</div>
+
+<div class="footer">
+	&copy Josh Williams
+</div>
+
+</body>
+</html>

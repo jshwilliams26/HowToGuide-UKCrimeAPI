@@ -1,0 +1,164 @@
+<!--
+Name: Josh Williams
+Description: UK Police API How To Guide
+https://data.police.uk/docs/
+-->
+
+<!doctype html>
+<html>
+<head>
+
+<title></title>
+<meta charset="UTF-8">
+<link href="ukCrime.css" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div class="topnav">
+	<table><tbody><tr>
+		<td><a href="home.html">Home</a></td>
+		<td><a href="gettingStarted.html">Getting Started</a></td>
+		<td><a href="forces.html">Forces</a></td>
+		<td><a href="crimes.html">Crimes</a></td>
+		<td><a href="neighborhoods.html">Neighborhoods</a></td>
+		<td><a href="stopAndSearch.html">Stops and Searches</a></td>
+	</tr></tbody></table>
+</div>
+
+<div class="top">
+	<h1>UK Police API Guide</h1>
+</div>
+
+<div class="content">
+	<h2 class="bodyHeader">Accessing Crime Information with a GET query string</h2>
+	
+	<p>We will now demonstrate how to use GET requests to retrieve crime data and street level crimes.  You can choose to
+		search for crimes either around a specific point (in a 1 mile radius around a specific latitude and longitude), or within an area 
+		(delimited by several points). You can also specify a date to look for street level crimes.</p>
+	
+	<p>We will perform a GET request to retrieve this data.  Let's say for example we want to look at street level crimes at a location with
+		a latitude of 51, a longitude of 0.1, and a date of 2012-03. The query string will look like this:
+		<span class="codespan">https://data.police.uk/api/crimes-street/all-crime?lat=51&lng=0.1&date=2012-03</span>.</p>
+		
+	<p>This kind of query string is structured as follows.  The site where this is being retrieved from is <span class="codespan">https://data.police.uk/api/crimes-street/all-crime</span>.
+		A question mark connects this url with the query data - the key value pairs.  Each key and respective value is connected with an
+		equal sign "=", and each key-value pair is connected by an ampersand (&).  In the example above, lat (latitude) = 51,
+		lng (longitude) = 0.1, and the date equals 2012-03.</p>
+		
+	<p>You can also look at the street level crimes within a geographic area, where several geographic points (latitude and longitude pairs)
+		are concatenated into a string, which looks like this: <span class="codespan">50,0:51,0.2:50.2,-1</span>, where each geographic point is
+		separated by a colon.  This string will be the value, and <span class="codespan">poly</span> will be the key.  An example link
+		would look like this (with the area and the date): <span class="codespan">https://data.police.uk/api/crimes-street/all-crime?poly=50,0:51,0.2:50.2,-1&date=2012-03</span>.
+		
+	<h2 class="bodyHeader">Using JavaScript to perform a GET Request</h2>
+
+	<p>Now that you know how to construct query urls, we will begin writing code to specify values in a form and then use JavaScript to 
+		retrieve this information with a GET request.  We will use a form so the user can choose either a geographic point or
+		an area, and then the user can enter the location and date, and when a submit button is clicked, the street level crime data for
+		that location will be returned.  The form will look like this:</p>
+		
+		<fieldset>
+		<span class="codespan"><form method="GET">
+		  Enter either a Latitude and Longitude or an area (with multiple latitudes and longitudes in the following format: "50,1:51,2:52,0.5"):<br />
+		  <input type="radio" name="locType" value="latLong" checked>
+		  Latitude: <input type="text" id="lat">
+		  Longitude: <input type="text" id="lon"><br />
+  	
+		  <input type="radio" name="locType" value="gArea">  
+		  Enter a geographic area: 
+		  <input type="text" id="area"><br /><br />
+  	
+		  Enter a date (YYYY-MM): 
+		  <input type="text" id="date"><br />
+		  <input type="submit" id="crimesubmit" value="View Crime Information">
+		</form></span></fieldset>
+	
+	<p>Here the user can specify a point or an area, as well as a date, and when the data 
+		is entered, the user can submit the request. Once this is submitted, a query string
+		will be made along with a GET request.</p>
+	
+	<p>We will begin the JavaScript code by adding an event listener to the "View Crime 
+		Information" button.  We will first add an event listener to a function 
+		that will then add an event listener to the submit button, with the following code: 
+		<span class="codespan">document.addEventListener('DOMContentLoaded', bindButton);</span></p>
+
+	<p>Then within the "bindButton" function, add an event listener to the submit button 
+		(in this instance, the button id is "forcessubmit"): 
+		<span class="codespan">document.getElementById('forcessubmit').addEventListener('click', function(event) {});</span>
+		Now when the button is clicked, the <span class="codespan">bindButton</span> function is run.</p>
+
+	<p>Within this function, create a new HTTP request: <span class="codespan">var req = new XMLHttpRequest();</span>.
+		This will make a request and either send or receive data.  In this case we will be receiving data (GET).<p>
+	
+	<p>Then, based on the form fields that were selected, the text entries will be pulled from
+		the form and added to the query string.  For example, for the location point, the following
+		code pieces together the url with the form data to perform a GET request asynchronously (which is why the third value is true):
+		<span class="codespan">req.open("GET", "https://data.police.uk/api/crimes-street/all-crime?lat=" + la + "&lng=" + lo + "&date=" + da, true);</span>
+		Using <span class="codespan">document.querySelector('input[name = "locType"]:checked').value;</span>
+		we can determine what the key(s) will be for the location - "lat" and "lng" for the single
+		point or "poly" for the geographic area.  Then <span class="codespan">document.getElementById</span>
+		will get the data from the text boxes to use as the value(s) for the key(s).
+		We will not be sending anything to the server for this request, so null will be sent: 
+		<span class="codespan">req.send(null);</span>.  If there are no errors, we will then 
+		load the results: <span class="codespan">if (req.status >= 200 && req.status < 400) {
+                var response = req.responseText;
+                document.getElementById('viewForces').textContent = response;
+            }</span></p>
+	
+	<p>Check out the entirety of the code in the CodePen below.  In the CodePen, enter "51"
+		for latitude and "0.1" for longitude, and "2012-01" for the date.  Then enter 
+		"50,0:51,0.2:50.2,-1" for the geographic area, and use the same date:</p>
+	
+	<p data-height="265" data-theme-id="dark" data-slug-hash="MyRPVa" data-default-tab="js" data-user="willijo4" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/willijo4/pen/MyRPVa/">Crimes1</a> by Josh (<a href="http://codepen.io/willijo4">@willijo4</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
+
+	<p>This will return the category of each crime, along with its location, date, and an id
+		for the crime.  Notice in the form that if the Latitude and Longitude are selected, 
+		then nothing can be entered into the area, and vice versa.  This functionality is added by
+		the <span class="codespan">disableField</span> function, where the disabled attribute 
+		of a checkbox is true (disabled) or false (not disabled) depending on which selection is made.  For example, 
+		if the user chose to enter data into the geographic area box, then the <span class="codespan">disableField</span>
+		function will check if this field is checked with the following code: <span class="codespan">if (document.getElementById('area').checked)</span>.  
+		If so, the disabled status will be set to false, so that a location ID can be entered into the field: 
+		<span class="codespan">document.getElementById('area').disabled = false;</span>.  
+		The disabled status of the other text boxes will be set to true so no data can be entered into them.
+		Only data entered into an enabled text box with the appropriate radio button selected
+		will be used to create the query string.</p>
+
+	<p>We are going to modify the form to allow the user options to view the outcomes of a 
+		street level crimes or the crimes that happened at a particular location, where there 
+		will be a radio button to choose which one.  Then the user can specify a location point, 
+		an area, or this time a location id.</p>
+	
+	<p>The JS code will be a bit different here, because, based on the different combinations 
+		of choices, a different URL with a different query string will be constructed.  For 
+		example, if a user chooses Crimes at a Location, a latitude and longitude of 52,-1, 
+		and a date of 2015-03, then the following URL will be constructed: 
+		<span class="codespan">https://data.police.uk/api/crimes-at-location?lat=52&lng=-1&date=2015-03</span>.
+		Try additionally to search using a Location ID of "885142" and a date of "2015-03" for 
+		Street Level Outcomes.  Note that you cannot use an area for Crimes at a Location, only
+		a location point or a location id can be used to see crimes at a location.</p>
+	
+	<p data-height="694" data-theme-id="dark" data-slug-hash="QNPRaX" data-default-tab="js" data-user="willijo4" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/willijo4/pen/QNPRaX/">Crimes2</a> by Josh (<a href="http://codepen.io/willijo4">@willijo4</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
+
+	<p>You can construct and perform similar queries for <a href="https://data.police.uk/docs/method/crimes-no-location/">crimes with no location</a>, 
+		<a href="https://data.police.uk/docs/method/crime-categories/">crime categories 
+		for a date</a>, and the <a href="https://data.police.uk/docs/method/outcomes-for-crime/">outcomes for a specific crime</a>.  
+		Open a CodePen and try to write some similar code for these queries.  We will continue 
+		exploring more of the API, and while we haven't yet explored how to display JSON data 
+		other than as raw data, we will do so in the next sections.</p>
+
+	<div class="nav">
+		<a href="forces.html"><div class="navbuttons" id="button1">Previous</div></a>
+		<a href="neighborhoods.html"><div class="navbuttons" id="button2">Next</div></a>
+	</div>
+</div>
+
+<div class="footer">
+	&copy Josh Williams
+</div>
+
+</body>
+</html>

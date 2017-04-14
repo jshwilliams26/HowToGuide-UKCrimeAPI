@@ -1,0 +1,113 @@
+body {
+	background-color: black;
+	color: white;
+	font-family: 'Open Sans', Source Sans Pro, Georgia, sans-serif;
+}
+
+.top {
+	background-color: #222233;
+	color: #9FBBFF;
+	padding: 10px 150px 10px 150px;
+	margin: 0px 50px 0px 50px;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.topnav table{
+	margin-right: auto;
+	margin-left: auto;
+	height: 50px;
+}
+
+.topnav tr a {
+	color: #888899;
+	text-decoration: none;
+	margin: 15px;
+	padding: 15px;
+}
+
+.topnav tr a:hover {
+	color: #FFFFFF;
+}
+
+.footer {
+	background-color: #222233;
+	color: #9FBBFF;
+	padding: 10px 150px 10px 150px;
+	margin: 0px 50px 0px 50px;
+	text-align: center;
+}
+
+.content {
+	background-color: #555566;
+	color: #FFFFFF;
+	padding: 10px 150px 10px 150px;
+	margin: 0px 50px 0px 50px;
+}
+
+.codespan {
+	background-color: rgba(25,28,45,.8);
+	color: #9FBBFF;
+	font-size: 15px;
+	font-family: Monaco;
+}
+
+fieldset {
+	background-color: rgba(25,28,45,.8);
+}
+
+.nav {
+	width: 280px;
+	height: 75px;
+	margin: 0 auto;
+	align: center;
+}
+
+.navbuttons {
+	border-radius: 0px;
+	background-color: #222233;
+	color: #9FBBFF;
+	border: #222233;
+	padding: 15px;
+	margin: 15px;
+	font-size: 18px;
+	width: 75px;
+	text-align: center;
+}
+
+.navbuttons:hover {
+	background-color: #DDDDDD;
+	color: #000000;
+	font-weight: bold;
+}
+
+.navbuttons a {
+	color: #9FBBFF;
+	text-decoration: none;	
+}
+
+.navbuttons a:hover {
+	color: #000000;
+	font-weight: bold;
+}
+
+.forceimg {
+	width: 700px;
+}
+
+#button1 {
+	float: left;
+}
+
+#button2 {
+	float: right;
+}
+
+.bodyHeader {
+	color: #9FBBFF;
+	background-color: rgba(25,28,45,.8); 
+	font-size: 26px;
+	text-align: left;
+	padding: 5px 5px 5px 10px;
+}

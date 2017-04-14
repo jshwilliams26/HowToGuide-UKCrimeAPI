@@ -1,0 +1,69 @@
+<!--
+Name: Josh Williams
+Description: UK Police API How To Guide
+https://data.police.uk/docs/
+-->
+
+<!doctype html>
+<html>
+<head>
+
+<title></title>
+<link href="ukCrime.css" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div class="topnav">
+	<table><tbody><tr>
+		<td><a href="home.html">Home</a></td>
+		<td><a href="gettingStarted.html">Getting Started</a></td>
+		<td><a href="forces.html">Forces</a></td>
+		<td><a href="crimes.html">Crimes</a></td>
+		<td><a href="neighborhoods.html">Neighborhoods</a></td>
+		<td><a href="stopAndSearch.html">Stops and Searches</a></td>
+	</tr></tbody></table>
+</div>
+
+<div class="top">
+	<h1>UK Police API Guide</h1>
+</div>
+
+<div class="content">
+	<h2 class="bodyHeader">Getting Started</h2>
+
+	<p>We will be using the UK Police API to retrieve crime information.  An API is an Application Program Interface, 
+		where you can use queries to call functions to perform various tasks.</p>
+
+	<p>Queries made to the UK Police API will be made using GET requests (we will not be sending
+		any data to the API, so we will not be making POST requests).  A GET request is a request 
+		made to retrieve data from a server.  The GET request will typically be a url with one or more
+		key-value pairs attached to the url string.  An example query string would be
+		<span class="codespan">http://www.url.com/api?key1=value1&key2=value2</span> (note: this example is fake).
+		A request is made to the website url.com, a question mark is then added to the url, followed
+		by one or more key value pairs, where keys and values are linked with an equal sign, and each
+		key-value pair is linked with an ampersand (&).</p>
+
+	<p>Since the UK Police API does not require any authentication, you will not need an API key to make requests
+		to the UK Police API.</p>
+
+	<p>We will be performing requests asynchronously, which means that when the server receives the sent data, a callback
+		is received.  When the data is sent, once it is received, content can be returned to the page.</p>
+	
+	<p>This guide will focus on creating JavaScript code that will use information typed and selected in form fields to 
+		create queries that will return back the data we wish to retrieve.  We will build this up as we go through
+		the various categories of data on the UK Police server: police force data, crime data, neighborhood information, and 
+		data for stops and searched.</p>
+
+	<div class="nav">
+		<a href="home.html"><div class="navbuttons" id="button1">Previous</div></a>
+		<a href="forces.html"><div class="navbuttons" id="button2">Next</div></a>
+	</div>
+</div>
+
+<div class="footer">
+	&copy Josh Williams
+</div>
+
+</body>
+</html>

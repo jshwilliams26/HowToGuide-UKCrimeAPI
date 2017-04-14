@@ -1,0 +1,76 @@
+<!--
+Name: Josh Williams
+Description: UK Police API How To Guide
+https://data.police.uk/docs/
+-->
+
+<!doctype html>
+<html>
+<head>
+
+<title></title>
+<meta charset="UTF-8">
+<link href="ukCrime.css" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div class="topnav">
+	<table><tbody><tr>
+		<td><a href="home.html">Home</a></td>
+		<td><a href="gettingStarted.html">Getting Started</a></td>
+		<td><a href="forces.html">Forces</a></td>
+		<td><a href="crimes.html">Crimes</a></td>
+		<td><a href="neighborhoods.html">Neighborhoods</a></td>
+		<td><a href="stopAndSearch.html">Stops and Searches</a></td>
+	</tr></tbody></table>
+</div>
+
+<div class="top">
+	<h1>UK Police API Guide</h1>
+</div>
+
+<div class="content">
+	<h2 class="bodyHeader">Accessing Stop and Search Information</h2>
+	
+	<p>We will now tie everything together, from forms to GET requests to displaying JSON data, and we
+		will show ways to search for and display Stop and Search Information.</p>
+	
+	<p>You can specify a location, area, or location id and a date to view stop and searches within an area.
+		Once again, depending on the form information specified, that information will be used to
+		construct a particular query string, and then a GET request will be performed.  This 
+		JSON data will be parsed and then displayed in a table.  Try entering "885142" for 
+		the location ID and "2015-06" for the date.</p>
+	
+	<p data-height="265" data-theme-id="dark" data-slug-hash="YqMJdj" data-default-tab="js" data-user="willijo4" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/willijo4/pen/YqMJdj/">SAS1</a> by Josh (<a href="http://codepen.io/willijo4">@willijo4</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
+
+	<p>You can also view stop and searches that don't have a location, or you can view stops
+		and searches by force.  Try using "leicestershire" as the id and "2015-03" as the date, 
+		and try both options:</p>
+	
+	<p data-height="265" data-theme-id="dark" data-slug-hash="mPgZwZ" data-default-tab="js" data-user="willijo4" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/willijo4/pen/mPgZwZ/">SAS2</a> by Josh (<a href="http://codepen.io/willijo4">@willijo4</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+	<script async src="https://assets.codepen.io/assets/embed/ei.js"></script>
+
+	<p>These results for both CodePens display the gender, age range, date, type, outcome, and legislation of 
+		each stop and search performed for this particular force.  You can view other stop and
+		search options at the <a href="https://data.police.uk/docs/">documentation</a>.
+
+	<h2 class="bodyHeader">Conclusion</h2>
+
+	<p>This concludes our How-To-Guide for the UK Police API.  You have learned how to navigate JSON
+		data on this API, use forms and JavaScript code to perform GET requests to retrieve this
+		data, and display this data in table format.  You can view the <a href="https://data.police.uk/docs/">documentation</a>
+		and learn more about this API, and try to use these methods to do other requests for this API.</p>
+
+	<div class="nav">
+		<a href="neighborhoods.html"><div class="navbuttons" id="button1">Previous</div></a>
+	</div>
+</div>
+
+<div class="footer">
+	&copy Josh Williams
+</div>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!--
+Name: Josh Williams
+Description: UK Police API How To Guide
+https://data.police.uk/docs/
+-->
+
+<!doctype html>
+<html>
+<head>
+
+<title></title>
+<meta charset="UTF-8">
+<link href="ukCrime.css" rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div class="topnav">
+	<table><tbody><tr>
+		<td><a href="home.html">Home</a></td>
+		<td><a href="gettingStarted.html">Getting Started</a></td>
+		<td><a href="forces.html">Forces</a></td>
+		<td><a href="crimes.html">Crimes</a></td>
+		<td><a href="neighborhoods.html">Neighborhoods</a></td>
+		<td><a href="stopAndSearch.html">Stops and Searches</a></td>
+	</tr></tbody></table>
+</div>
+
+<div class="top">
+	<h1>UK Police API Guide</h1>
+</div>
+
+<div class="content">
+	<h2 class="bodyHeader">UK Police Force Information and JSON Data</h2>
+	
+	<p>You can view all of the UK police forces and relevant information for these forces.
+		The forces can be retrieved here: <a href="https://data.police.uk/api/forces">https://data.police.uk/api/forces</a>.
+		The force data should appear in JSON format:</p>
+		
+		<img class="forceimg" src="forces1.png">
+	
+	<p>In JSON format, within each pair of curly crackets is an object, and objects have one or more 
+		pieces of data with a key and a value.  In this case, each object has two keys: "id" and "name", and
+		for the first force id, the value is "avon-and-somerset".  We will be retrieving JSON data from the UK API
+		with our JavaScript code.</p>
+		
+	<p>We can also view force information for a specific force, by going to the URL <a href="https://data.police.uk/api/forces/leicestershire">https://data.police.uk/api/forces/leicestershire</a>,
+		where "leicestershire" is the force we want to view.  We can also view information for the senior officers of a 
+		force, <a href="https://data.police.uk/api/forces/leicestershire/people">https://data.police.uk/api/forces/leicestershire/people</a>, where
+		adding "/people" to the end of the link will show information for the Leicestershire senior police officers.  Go to these
+		links to view the JSON data for Leicestershire police force and for its senior police officers. For each object,
+		look at what keys and values are there.  Replacing "leicestershire" with the id of another police force will show 
+		JSON data for the appropriate police force.  </p>
+		
+	<p>Now that we have an idea about the kind of data we will be working with, we will move on to 
+		performing GET requests and working with JSON data for retrieving UK crime data.</p>
+		
+	<div class="nav">
+		<a href="gettingStarted.html"><div class="navbuttons" id="button1">Previous</div></a>
+		<a href="crimes.html"><div class="navbuttons" id="button2">Next</div></a>
+	</div>
+</div>
+
+<div class="footer">
+	&copy Josh Williams
+</div>
+
+</body>
+</html>
